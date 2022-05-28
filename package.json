@@ -1,0 +1,27 @@
+{
+  "name": "Cubicle-shop",
+  "version": "1.0.0",
+  "description": "A simulation of Rubik's cubes shop",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/reni17/Cubicle-shop.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/reni17/Cubicle-shop/issues"
+  },
+  "homepage": "https://github.com/reni17/Cubicle-shop#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
