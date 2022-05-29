@@ -4,7 +4,7 @@ const app = express()
 const router = require('./routes')
 
 app.use('/static', express.static('./src/public'));
-
+app.use(express.urlencoded({extended: true}))
 
 app.engine('hbs', hadlebars.engine({
     extname : 'hbs'
