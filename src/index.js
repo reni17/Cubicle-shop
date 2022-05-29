@@ -1,7 +1,7 @@
 const express = require('express');
 const hadlebars = require('express-handlebars');
 const app = express()
-const router = require('./views/routes')
+const router = require('./routes')
 
 app.use('/static', express.static('./src/public'));
 
