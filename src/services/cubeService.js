@@ -9,7 +9,7 @@ exports.save = (cube) => {
      return fs.writeFile(path.resolve('src', 'cubes.json'), textData , {encoding: 'utf-8'})
 }
 
-exports.getOne = (id)=> cubes[id]
+exports.getOne = (id)=> cubes.find(x => x.id == id)
 
 exports.getAll = (search = '', from, to) => {
     
