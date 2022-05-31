@@ -13,6 +13,17 @@
         "imgUrl": "https://images-na.ssl-images-amazon.com/images/I/61izOzq%2BBAL._SY355_.jpg",
         "name": "Gan356 Air SM",
         "difficultyLevel": "4"
+    },
+    {
+        "name": "new",
+        "description": "best",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Rubik%27s_cube.svg/250px-Rubik%27s_cube.svg.png",
+        "difficultyLevel": "6"
+    },
+    {
+        "name": "rer",
+        "description": "q2",
+        "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Rubik%27s_cube.svg/250px-Rubik%27s_cube.svg.png",
+        "difficultyLevel": "1"
     }
 ]
-
