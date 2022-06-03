@@ -1,23 +1,21 @@
 const express = require('express');
-const hadlebars = require('express-handlebars');
-const res = require('express/lib/response');
+const {initializeDatabase} = require('./config/database');
 const app = express()
 const router = require('./routes')
+const handlebars = require('./config/handlebars');
 
 app.use('/static', express.static('./src/public'));
 app.use(express.urlencoded({extended: true}))
 
-app.engine('hbs', hadlebars.engine({
-    extname : 'hbs'
-}))
-app.set('view engine', 'hbs');
-app.set('views', './src/views');
-
-
+handlebars(app)
 
 app.use(router)
+app.use((req, res) => res.render('404'))
 
-app.use((req, res) => 
-res.render('404'))
-
-app.listen(5000, ()=> console.log('Server is listening on port 5000...'))
+initializeDatabase()
+.then(()=> {
+    app.listen(5000, ()=> console.log('Server is listening on port 5000...')) 
+})
+.catch((err) => console.log(err))
+    
+     
