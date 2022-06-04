@@ -25,7 +25,13 @@ difficultyLevel: {
     required: true,
     min: 1,
     max: 6
-} 
+},
+accessories: [
+    {
+        type: mongoose.Types.ObjectId,
+        ref: 'Accessory'
+    }
+]
 })
 
 

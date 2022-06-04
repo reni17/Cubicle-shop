@@ -8,18 +8,22 @@ const AccessorySchema = new Schema({
     imageUrl: {
         type: String,
         required: true,
-        // validate:{
-        //     validator: function(){
-        //         return this.ImageUrl.startsWith('http')
-        //     }
-        // }
+     valdate:{
+         validator: /^http?/g
+     }
     },
     description: {
         type: String,
         required: true,
         maxlength: 100
     },
-
+    cubes: [
+        {
+            type: mongoose.Types.ObjectId,
+            ref: 'Cube'
+        }
+    ]
+    
 })
 
 
