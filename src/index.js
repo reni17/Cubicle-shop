@@ -10,7 +10,7 @@ app.use(express.urlencoded({extended: true}))
 handlebars(app)
 
 app.use(router)
-app.use((req, res) => res.render('404'))
+
 
 initializeDatabase()
 .then(()=> {
@@ -19,3 +19,4 @@ initializeDatabase()
 .catch((err) => console.log(err))
     
      
+// app.use((req, res) => res.render('404'))

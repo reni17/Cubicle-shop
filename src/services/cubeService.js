@@ -1,25 +1,21 @@
-const cubes = require('../cubes.json')
-const fs = require('fs/promises')
+const Cube = require('../models/Cube')
 const path = require('path')
 
 exports.save = (cube) => {
-    cubes.push(cube)
-    let textData =  JSON.stringify(cubes, '', 4)
-
-     return fs.writeFile(path.resolve('src', 'cubes.json'), textData , {encoding: 'utf-8'})
+ return  Cube.create(cube)
 }
 
-exports.getOne = (id)=> cubes.find(x => x.id == id)
+exports.getOne = (id)=> Cube.findById(id)
 
 exports.getAll = (search = '', from, to) => {
     
-    from = Number(from) || 0
-    to = Number(to) || 6
-    const result = cubes
-    .filter(x => x.name.toLowerCase().includes(search.toLowerCase()))
-    .filter(x => x.difficultyLevel>=from && x.difficultyLevel<=to)
+    // from = Number(from) || 0
+    // to = Number(to) || 6
+    // const result = cubes
+    // .filter(x => x.name.toLowerCase().includes(search.toLowerCase()))
+    // .filter(x => x.difficultyLevel>=from && x.difficultyLevel<=to)
  
        
     
-    return result
+    return []
 }
