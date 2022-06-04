@@ -16,7 +16,7 @@ exports.getAll = (search = '', from, to) => {
     // .filter(x => x.difficultyLevel>=from && x.difficultyLevel<=to)
  
       let cubes =Cube.find()
-      console.log(cubes);
+   
     
     return cubes
 }
