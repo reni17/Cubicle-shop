@@ -7,3 +7,7 @@ return Accessory.create(accessory)
 exports.getAllAccessories = () => {
    return Accessory.find()
 }
+
+exports.getAllAvailable = (ids) => {
+   return Accessory.find({_id: {$nin: ids}})
+}
