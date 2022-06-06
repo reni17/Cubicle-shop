@@ -12,9 +12,6 @@ router.post('/create', (req, res) => {
   const cube = req.body;
   //validate..
 
-
-  //save data
-
   cubeService.save(cube)
   .then(()=> {
         res.redirect('/');
@@ -34,6 +31,14 @@ router.get('/:cubId/attach-accessory',async (req, res) => {
   const accessories = await accessoryService.getAllAccessories().lean()
 
 res.render('attachAccessory', {cube, accessories})
+})
+
+
+router.post('/:cubId/attach-accessory', (req, res) => {
+  const accessoryId = req.body.accessory
+   cubeService.attach(accessoryId, req.params.cubId)
+
+res.redirect(`/cube/details/${req.params.cubId}`)
 })
 
 module.exports = router;
