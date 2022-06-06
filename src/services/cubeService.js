@@ -8,16 +8,17 @@ exports.save = (cube) => {
 
 exports.getOne = (id)=> Cube.findById(id).populate('accessories')
 
-exports.getAll = (search = '', from, to) => {
+exports.getAll =  (search = '', from, to) => {
    
-    // from = Number(from) || 0
-    // to = Number(to) || 6
+    from = Number(from) || 0
+    to = Number(to) || 6
     // const result = cubes
     // .filter(x => x.name.toLowerCase().includes(search.toLowerCase()))
     // .filter(x => x.difficultyLevel>=from && x.difficultyLevel<=to)
+
  
-      let cubes =Cube.find()
-   
+      let cubes =  Cube.find({name: {$regex: new RegExp(search, 'i')}})
+    .where('difficultyLevel').lte(to).gte(from)
     
     return cubes
 }
