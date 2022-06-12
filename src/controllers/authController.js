@@ -10,7 +10,12 @@ router.get('/register', (req, res) => {
 router.post('/register',async (req, res) => {
 
    const createdUser = await authService.register(req.body)
-  
+   if(createdUser){
+
+       res.redirect('/')
+   }else{
+    res.redirect('404')
+   }
 
 })
 
