@@ -30,7 +30,7 @@ const token =await authService.login(req.body)
 if(!token){
     res.redirect('/404')
 }
-console.log(token);
+res.cookie('session', token)
 res.redirect('/')
 
 })
