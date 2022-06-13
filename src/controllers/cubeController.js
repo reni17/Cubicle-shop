@@ -1,8 +1,10 @@
 const router = require("express").Router();
 const cubeService = require("../services/cubeService");
 const accessoryService = require('../services/accessoryService');
+const { isAuth } = require("../middlewares/authMiddleware");
+const { restart } = require("nodemon");
 
-router.get("/create", (req, res) => {
+router.get("/create",isAuth, (req, res) => {
   res.render("create");
 });
 
@@ -10,6 +12,7 @@ router.get("/create", (req, res) => {
 
 router.post('/create', (req, res) => {
   const cube = req.body;
+  cube.owner = req.user._id
   //validate..
 
   cubeService.save(cube)
@@ -41,9 +44,12 @@ router.post('/:cubId/attach-accessory', (req, res) => {
 res.redirect(`/cube/details/${req.params.cubId}`)
 })
 
-router.get('/:cubId/edit',async (req, res) => {
+router.get('/:cubId/edit',isAuth, async (req, res) => {
 
   const cube = await cubeService.getOne(req.params.cubId).lean()
+  if(cube.owner != req.user._id){
+    return res.redirect('/404')
+  }
   cube[`difficultyLevel${cube.difficultyLevel}`] = true
   if(!cube){
     res.redirect('/404')
