@@ -6,6 +6,7 @@ exports.save = (cube) => {
  return  Cube.create(cube)
 }
 
+
 exports.getOne = (id)=> Cube.findById(id).populate('accessories')
 
 exports.getAll =  (search = '', from, to) => {
@@ -22,6 +23,8 @@ exports.getAll =  (search = '', from, to) => {
     
     return cubes
 }
+exports.edit = async(cubeId, cubeData)=> Cube.findByIdAndUpdate(cubeId, cubeData)
+
 
 exports.attach = async (accessoryId, cubId) => {
 
