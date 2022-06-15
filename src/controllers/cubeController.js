@@ -17,6 +17,7 @@ router.post('/create', (req, res) => {
 
   cubeService.save(cube)
   .then(()=> {
+      
         res.redirect('/');
   })
   .catch(err => console.log(err))
@@ -25,7 +26,8 @@ router.post('/create', (req, res) => {
 
 router.get('/details/:id', async (req, res)=> {
   const cube = await cubeService.getOne(req.params.id).lean()
-  res.render('details', {cube})
+  const isOwner = cube.owner == req.user?._id
+  res.render('details', {cube, isOwner})
 })
 
 router.get('/:cubId/attach-accessory',async (req, res) => {
@@ -60,8 +62,20 @@ router.get('/:cubId/edit',isAuth, async (req, res) => {
 router.post('/:cubId/edit', async (req, res)=> {
   const cube = await cubeService.getOne(req.params.cubId).lean()
 
-  let modifiedCub = await cubeService.edit(req.params.cubId, req.body)
+  await cubeService.edit(req.params.cubId, req.body)
   res.redirect(`/cube/details/${req.params.cubId}`)
+})
+
+router.get('/:cubId/delete', async(req, res) => {
+  const cube = await cubeService.getOne(req.params.cubId).lean()
+  res.render('delete', {cube})
+
+})
+
+router.post('/:cubId/delete', async(req, res) => {
+
+  await cubeService.delete(req.params.cubId)
+  res.redirect('/')
 })
 
 module.exports = router;

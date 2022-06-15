@@ -12,6 +12,7 @@ const jwtVerify = promisify(jwt.verify)
                 const decodedToken =await jwtVerify(token, secret)
                 req.user = decodedToken
                 res.locals.user = decodedToken
+                
             }catch(err){
                 console.log(err);
               return res.redirect('/404')

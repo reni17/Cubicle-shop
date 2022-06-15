@@ -4,6 +4,7 @@ const Accessory = require('../models/Accessory')
 
 exports.save = (cube) => {
  return  Cube.create(cube)
+ 
 }
 
 
@@ -23,14 +24,15 @@ exports.getAll =  (search = '', from, to) => {
     
     return cubes
 }
-exports.edit = async(cubeId, cubeData)=> Cube.findByIdAndUpdate(cubeId, cubeData)
+exports.edit = (cubeId, cubeData)=> Cube.findByIdAndUpdate(cubeId, cubeData)
 
+exports.delete = (cubeId) => Cube.findByIdAndDelete(cubeId)
 
 exports.attach = async (accessoryId, cubId) => {
 
     const cube = await Cube.findById(cubId)
     const accessory = await Accessory.findById(accessoryId)
-
+  
         accessory.cubes.push(cube)
         cube.accessories.push(accessory)
 
